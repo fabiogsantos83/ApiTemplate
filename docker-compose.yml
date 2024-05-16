@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  db:
+    container_name: mysql_db
+    image: mysql:8.0.0
+    command: --sql_mode=''
+    environment:
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=teste
+      - MYSQL_PASSWORD=123
+      - MYSQL_ROOT_PASSWORD=123
+    ports:
+      - "3307:3306"
+    networks:
+      - nt-api-template   
+    volumes:
+      - "./script.sql:/docker-entrypoint-initdb.d/1.sql"
+ 
+networks:   
+  nt-api-template:
+    driver: bridge
+      
