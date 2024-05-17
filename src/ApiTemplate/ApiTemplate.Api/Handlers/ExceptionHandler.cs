@@ -1,13 +1,12 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Newtonsoft.Json;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ApiTemplate.Api.Handlers
 {
     public static class ExceptionHandler
     {
-        public static async Task HandleError(HttpContext context) 
+        public static async Task HandleError(HttpContext context)
         {
             var exceptionHandlerPathFeature =
             context.Features.Get<IExceptionHandlerPathFeature>();

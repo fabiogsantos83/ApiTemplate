@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 
 services:
   db:
@@ -13,11 +13,34 @@ services:
     ports:
       - "3307:3306"
     networks:
-      - nt-api-template   
+      - nt-api-template
     volumes:
       - "./script.sql:/docker-entrypoint-initdb.d/1.sql"
- 
-networks:   
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    ports:
+      - "9200:9200"
+    networks:
+      - nt-api-template
+    environment:
+      discovery.type: "single-node"
+      ES_JAVA_OPTS: "-Xms2g -Xmx2g"
+      xpack.monitoring.enabled: "true"
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.7.0
+    ports:
+      - "5601:5601"
+    networks:
+      - nt-api-template
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+networks:
   nt-api-template:
     driver: bridge
-      

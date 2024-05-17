@@ -1,11 +1,9 @@
 using ApiTemplate.Api.Handlers;
+using ApiTemplate.Infrastructure.Extensions;
 using ApiTemplate.Infrastructure.Ioc;
-using FluentValidation;
-using Microsoft.AspNetCore.Diagnostics;
-using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.AddSerilog(builder.Configuration, "API Observability");
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -31,5 +29,7 @@ app.UseExceptionHandler(exceptionHandlerApp =>
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseSerilog();
 
 app.Run();
