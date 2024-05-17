@@ -14,6 +14,7 @@ namespace ApiTemplate.Infrastructure.Ioc
             services.AddTransient<IUnitOfWork, UnitOfWork.UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserAddCommand).Assembly));
+
         }
     }
 }

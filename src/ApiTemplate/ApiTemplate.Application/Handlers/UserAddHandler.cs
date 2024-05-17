@@ -1,6 +1,7 @@
 ﻿using ApiTemplate.Application.Commands;
 using ApiTemplate.Domain.Entities;
 using ApiTemplate.Domain.Interfaces;
+using FluentValidation;
 using MediatR;
 
 namespace ApiTemplate.Application.Handlers
@@ -18,6 +19,11 @@ namespace ApiTemplate.Application.Handlers
 
         public async Task<Guid> Handle(UserAddCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                throw new ValidationException(request.ValidationResult.Errors);
+            }
+
             var id = Guid.NewGuid();
 
             _unitOfWork.BeginTransaction();

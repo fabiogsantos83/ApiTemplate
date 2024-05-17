@@ -1,4 +1,8 @@
+using ApiTemplate.Api.Handlers;
 using ApiTemplate.Infrastructure.Ioc;
+using FluentValidation;
+using Microsoft.AspNetCore.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +23,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseExceptionHandler(exceptionHandlerApp =>
+{
+    exceptionHandlerApp.Run(async context => await ExceptionHandler.HandleError(context));
+});
 
 app.UseAuthorization();
 
