@@ -41,6 +41,22 @@ services:
     depends_on:
       - elasticsearch
 
+  api: 
+    container_name: container-app
+    image: img-api
+    ports:
+      - "8080:80"
+    build: 
+      context: .
+    depends_on:
+      - db
+      - elasticsearch
+    networks:
+      - nt-api-template
+    environment:
+      - ASPNETCORE_URLS=http://*:80
+      - ASPNETCORE_ENVIRONMENT=Production
+
 networks:
   nt-api-template:
     driver: bridge

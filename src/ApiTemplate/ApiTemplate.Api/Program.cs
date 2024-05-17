@@ -3,7 +3,7 @@ using ApiTemplate.Infrastructure.Extensions;
 using ApiTemplate.Infrastructure.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddSerilog(builder.Configuration, "API Observability");
+builder.AddSerilog(builder.Configuration, "API Template");
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -16,11 +16,10 @@ builder.Services.RegisterServices();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseExceptionHandler(exceptionHandlerApp =>
 {
     exceptionHandlerApp.Run(async context => await ExceptionHandler.HandleError(context));
