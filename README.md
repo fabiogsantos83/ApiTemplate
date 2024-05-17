@@ -18,7 +18,7 @@
 
 
 ## Instruções para rodar
-Na pasta raiz do projeto rodar o comando abaixo para subir a api, o banco de dados, o Kibana e o Elastic Search em containers do docker: 
+Na pasta raiz do projeto rodar o comando abaixo para subir a API, o banco de dados MySql, o Kibana e o Elastic Search em containers do docker: 
 
 ```
 docker-compose up -d
