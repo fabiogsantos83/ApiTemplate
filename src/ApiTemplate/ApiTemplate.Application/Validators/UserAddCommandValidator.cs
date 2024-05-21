@@ -18,8 +18,10 @@ namespace ApiTemplate.Application.Validators
              .NotNull()
              .NotEmpty()
              .WithMessage("O campo {PropertyName} é obrigatório")
-             .MaximumLength(200)
-             .WithMessage("O campo {PropertyName} deve ter até 200 caracteres");
+             .MaximumLength(100)
+             .WithMessage("O campo {PropertyName} deve ter até 200 caracteres")
+             .EmailAddress()
+             .WithMessage("Email inválido");
 
         }
     }

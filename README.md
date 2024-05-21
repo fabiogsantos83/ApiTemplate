@@ -15,6 +15,7 @@
 - **Handler de erros de validação para tratamento de resposta 422**
 - **Logs utilizando a biblioteca Serilog com Elastic Search**
 - **Kibana no docker compose plugado no Elastic Search**
+- **AutoMapper**
 
 
 ## Instruções para rodar

@@ -1,40 +1,43 @@
 ﻿using ApiTemplate.Application.Commands;
 using ApiTemplate.Domain.Entities;
 using ApiTemplate.Domain.Interfaces;
+using AutoMapper;
 using FluentValidation;
 using MediatR;
 
 namespace ApiTemplate.Application.Handlers
 {
-    public class UserAddHandler : IRequestHandler<UserAddCommand, Guid>
+    public class UserAddHandler : IRequestHandler<UserAddCommand, string>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public UserAddHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public UserAddHandler(
+            IUserRepository userRepository, 
+            IUnitOfWork unitOfWork, 
+            IMapper mapper)
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public async Task<Guid> Handle(UserAddCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(UserAddCommand request, CancellationToken cancellationToken)
         {
             if (!request.IsValid())
             {
                 throw new ValidationException(request.ValidationResult.Errors);
             }
-
-            var id = Guid.NewGuid();
+            
+            var userEntity = _mapper.Map<UserEntity>(request);
+            userEntity.Id = Guid.NewGuid().ToString();
 
             _unitOfWork.BeginTransaction();
+
             try
             {
-                await _userRepository.Add(new UserEntity()
-                {
-                    Id = id.ToString(),
-                    Name = request.Name,
-                    Email = request.Email,
-                });
+                await _userRepository.Add(userEntity);
 
                 _unitOfWork.Commit();
             }
@@ -44,7 +47,7 @@ namespace ApiTemplate.Application.Handlers
                 throw;
             }
        
-            return id;
+            return userEntity.Id;
         }
     }
 }

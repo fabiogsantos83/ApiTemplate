@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace ApiTemplate.Application.Commands
 {
-    public class UserAddCommand : IRequest<Guid>
+    public class UserAddCommand : IRequest<string>
     {
         [JsonIgnore]
         public ValidationResult? ValidationResult { get; private set; }

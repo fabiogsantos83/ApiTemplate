@@ -1,6 +1,8 @@
 using ApiTemplate.Api.Handlers;
+using ApiTemplate.Infrastructure.AutoMapper;
 using ApiTemplate.Infrastructure.Extensions;
 using ApiTemplate.Infrastructure.Ioc;
+using Elastic.CommonSchema;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddSerilog(builder.Configuration, "API Template");
@@ -11,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegisterServices();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 
 var app = builder.Build();
