@@ -16,6 +16,7 @@
 - **Logs utilizando a biblioteca Serilog com Elastic Search**
 - **Kibana no docker compose plugado no Elastic Search**
 - **AutoMapper**
+- Token Jwt com OAuth 2
 
 
 ## Instruções para rodar
