@@ -11,6 +11,7 @@
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Elastic.CommonSchema.Serilog" Version="8.11.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageReference Include="MySqlConnector" Version="2.3.7" />

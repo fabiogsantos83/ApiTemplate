@@ -1,10 +1,13 @@
-﻿using FluentValidation.Results;
+﻿using ApiTemplate.Application.Validators;
+using FluentValidation.Results;
+using MediatR;
 using System.Text.Json.Serialization;
 
-namespace ApiTemplate.Api.Models
+namespace ApiTemplate.Application.Commands
 {
-    public class UserAuthentication
+    public class GenerateTokenCommand: IRequest<GenerateTokenCommandResponse>
     {
+
         [JsonIgnore]
         public ValidationResult? ValidationResult { get; private set; }
 
@@ -13,7 +16,7 @@ namespace ApiTemplate.Api.Models
 
         public bool IsValid()
         {
-            ValidationResult = new UserAuthenticationValidator().Validate(this);
+            ValidationResult = new GenerateTokenCommandValidator().Validate(this);
             return ValidationResult.IsValid;
         }
     }

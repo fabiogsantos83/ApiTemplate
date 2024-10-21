@@ -1,8 +1,8 @@
 ﻿using ApiTemplate.Api.Handlers;
+using ApiTemplate.Application.Models;
 using ApiTemplate.Infrastructure.AutoMapper;
 using ApiTemplate.Infrastructure.BuilderServices;
 using ApiTemplate.Infrastructure.Extensions;
-using ApiTemplate.Infrastructure.JwtConfigurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;

@@ -1,8 +1,8 @@
-﻿namespace ApiTemplate.Api.Models
+﻿namespace ApiTemplate.Application.Commands
 {
-    public class Token
+    public class GenerateTokenCommandResponse
     {
-        public Token(string accessToken, int expiration, string type)
+        public GenerateTokenCommandResponse(string accessToken, int expiration, string type)
         {
             AccessToken = accessToken;
             Expiration = expiration;

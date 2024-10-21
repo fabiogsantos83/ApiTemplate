@@ -1,7 +1,7 @@
 ﻿using ApiTemplate.Application.Commands;
+using ApiTemplate.Application.Models;
 using ApiTemplate.Domain.Interfaces;
 using ApiTemplate.Infrastructure.Context;
-using ApiTemplate.Infrastructure.JwtConfigurations;
 using ApiTemplate.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 

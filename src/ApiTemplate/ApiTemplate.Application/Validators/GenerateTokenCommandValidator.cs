@@ -1,10 +1,11 @@
-﻿using FluentValidation;
+﻿using ApiTemplate.Application.Commands;
+using FluentValidation;
 
-namespace ApiTemplate.Api.Models
+namespace ApiTemplate.Application.Validators
 {
-    public class UserAuthenticationValidator : AbstractValidator<UserAuthentication>
+    public class GenerateTokenCommandValidator : AbstractValidator<GenerateTokenCommand>
     {
-        public UserAuthenticationValidator()
+        public GenerateTokenCommandValidator()
         {
             RuleFor(x => x.UserName)
                 .NotNull()
