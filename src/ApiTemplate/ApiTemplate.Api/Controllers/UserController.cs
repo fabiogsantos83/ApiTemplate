@@ -1,5 +1,6 @@
 ﻿using ApiTemplate.Application.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiTemplate.Api.Controllers
@@ -14,6 +15,7 @@ namespace ApiTemplate.Api.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Post(UserAddCommand userAddCommand)
@@ -23,6 +25,7 @@ namespace ApiTemplate.Api.Controllers
             return Created($"/get/{response.ToString()}", null);
         }
 
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<UserListCommandRespose>))]
         public async Task<IActionResult> List()
