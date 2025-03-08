@@ -7,6 +7,7 @@
 - **Mediator** 
 - **Dependency Injection**
 - **Command**
+- **CQRS**
 
 #### Segue algumas implementações feitas:
 
