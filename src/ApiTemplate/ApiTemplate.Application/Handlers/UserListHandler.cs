@@ -1,11 +1,11 @@
-﻿using ApiTemplate.Application.Commands;
+﻿using ApiTemplate.Application.Queries;
 using ApiTemplate.Domain.Interfaces;
 using AutoMapper;
 using MediatR;
 
 namespace ApiTemplate.Application.Handlers
 {
-    public class UserListHandler : IRequestHandler<UserListCommand, IList<UserListCommandRespose>>
+    public class UserListHandler : IRequestHandler<UserQueryRequest, IList<UserQueryResponse>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -18,11 +18,11 @@ namespace ApiTemplate.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IList<UserListCommandRespose>> Handle(UserListCommand request, CancellationToken cancellationToken)
+        public async Task<IList<UserQueryResponse>> Handle(UserQueryRequest request, CancellationToken cancellationToken)
         {
             var users = await _userRepository.List();
             
-            return _mapper.Map<List<UserListCommandRespose>>(users);     
+            return _mapper.Map<List<UserQueryResponse>>(users);     
         }
     }
 }

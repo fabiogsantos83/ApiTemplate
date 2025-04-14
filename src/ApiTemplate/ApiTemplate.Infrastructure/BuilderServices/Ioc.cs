@@ -15,7 +15,7 @@ namespace ApiTemplate.Infrastructure.BuilderServices
             services.AddScoped<DbSession>();
             services.AddTransient<IUnitOfWork, UnitOfWork.UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserAddCommand).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserAddRequest).Assembly));
         }
     }
 }

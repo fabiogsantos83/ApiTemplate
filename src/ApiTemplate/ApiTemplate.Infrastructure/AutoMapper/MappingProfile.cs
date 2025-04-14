@@ -1,4 +1,5 @@
 ﻿using ApiTemplate.Application.Commands;
+using ApiTemplate.Application.Queries;
 using ApiTemplate.Domain.Entities;
 using AutoMapper;
 
@@ -8,8 +9,8 @@ namespace ApiTemplate.Infrastructure.AutoMapper
     {
         public MappingProfile()
         {
-            CreateMap<UserAddCommand, UserEntity>();
-            CreateMap<UserEntity, UserListCommandRespose>();
+            CreateMap<UserAddRequest, UserEntity>();
+            CreateMap<UserEntity, UserQueryResponse>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace ApiTemplate.Api.Handlers
 {
@@ -14,6 +15,8 @@ namespace ApiTemplate.Api.Handlers
             if (exceptionHandlerPathFeature?.Error is ValidationException)
             {
                 var error = (ValidationException)exceptionHandlerPathFeature.Error;
+                
+                Log.Logger.Warning(exceptionHandlerPathFeature.Error, error.Message);
 
                 var responseErrors = JsonConvert.SerializeObject(error.Errors.Select(p => p.ErrorMessage));
 
@@ -21,6 +24,15 @@ namespace ApiTemplate.Api.Handlers
                 context.Response.ContentType = "application/json";
 
                 await context.Response.WriteAsync(responseErrors);
+            }
+            else
+            {
+                Log.Logger.Error(exceptionHandlerPathFeature.Error, exceptionHandlerPathFeature.Error.Message);
+
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                context.Response.ContentType = "application/text";
+
+                await context.Response.WriteAsync("Ocorreu um erro inesperado");
             }
         }
     }

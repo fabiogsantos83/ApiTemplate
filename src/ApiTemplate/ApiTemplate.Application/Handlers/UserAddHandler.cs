@@ -7,7 +7,7 @@ using MediatR;
 
 namespace ApiTemplate.Application.Handlers
 {
-    public class UserAddHandler : IRequestHandler<UserAddCommand, string>
+    public class UserAddHandler : IRequestHandler<UserAddRequest, string>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -23,7 +23,7 @@ namespace ApiTemplate.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<string> Handle(UserAddCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(UserAddRequest request, CancellationToken cancellationToken)
         {
             if (!request.IsValid())
             {

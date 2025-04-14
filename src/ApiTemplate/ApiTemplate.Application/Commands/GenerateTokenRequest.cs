@@ -5,17 +5,18 @@ using System.Text.Json.Serialization;
 
 namespace ApiTemplate.Application.Commands
 {
-    public class UserAddCommand : IRequest<string>
+    public class GenerateTokenRequest: IRequest<GenerateTokenResponse>
     {
+
         [JsonIgnore]
         public ValidationResult? ValidationResult { get; private set; }
 
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
 
         public bool IsValid()
         {
-            ValidationResult = new UserAddCommandValidator().Validate(this);
+            ValidationResult = new GenerateTokenRequestValidator().Validate(this);
             return ValidationResult.IsValid;
         }
     }

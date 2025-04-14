@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace ApiTemplate.Application.Validators
 {
-    public class UserAddCommandValidator: AbstractValidator<UserAddCommand>
+    public class UserAddRequestValidator: AbstractValidator<UserAddRequest>
     {
-        public UserAddCommandValidator()
+        public UserAddRequestValidator()
         {
             RuleFor(x => x.Name)
                 .NotNull()

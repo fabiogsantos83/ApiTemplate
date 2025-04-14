@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace ApiTemplate.Application.Validators
 {
-    public class GenerateTokenCommandValidator : AbstractValidator<GenerateTokenCommand>
+    public class GenerateTokenRequestValidator : AbstractValidator<GenerateTokenRequest>
     {
-        public GenerateTokenCommandValidator()
+        public GenerateTokenRequestValidator()
         {
             RuleFor(x => x.UserName)
                 .NotNull()

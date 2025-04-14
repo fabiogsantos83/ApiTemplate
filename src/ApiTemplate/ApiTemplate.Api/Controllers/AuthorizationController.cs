@@ -15,8 +15,8 @@ namespace ApiTemplate.Api.Controllers
         }
 
         [HttpPost("token")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GenerateTokenCommandResponse))]
-        public async Task<IActionResult> CreateToken(GenerateTokenCommand generateTokenCommand)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GenerateTokenResponse))]
+        public async Task<IActionResult> CreateToken(GenerateTokenRequest generateTokenCommand)
         {
             var response = await _mediator.Send(generateTokenCommand);
 

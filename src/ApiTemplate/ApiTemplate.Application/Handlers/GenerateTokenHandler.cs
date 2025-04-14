@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ApiTemplate.Application.Handlers
 {
-    public class GenerateTokenHandler : IRequestHandler<GenerateTokenCommand, GenerateTokenCommandResponse>
+    public class GenerateTokenHandler : IRequestHandler<GenerateTokenRequest, GenerateTokenResponse>
     {
         private readonly JwtOptions _jwtOptions;
 
@@ -17,7 +17,7 @@ namespace ApiTemplate.Application.Handlers
         {
             _jwtOptions = jwtOptions;
         }
-        public async Task<GenerateTokenCommandResponse> Handle(GenerateTokenCommand request, CancellationToken cancellationToken)
+        public async Task<GenerateTokenResponse> Handle(GenerateTokenRequest request, CancellationToken cancellationToken)
         {
             if (!request.IsValid())
             {
@@ -33,7 +33,7 @@ namespace ApiTemplate.Application.Handlers
                 new[] { "read_todo", "create_todo" });
 
             //returns a json response with the access token
-            return new GenerateTokenCommandResponse
+            return new GenerateTokenResponse
             (
                 accessToken,
                 (int)tokenExpiration.TotalSeconds,
